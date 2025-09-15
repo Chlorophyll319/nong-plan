@@ -23,6 +23,7 @@ declare module 'vue-router/auto-routes' {
     '/education': RouteRecordInfo<'/education', '/education', Record<never, never>, Record<never, never>>,
     '/food-safety': RouteRecordInfo<'/food-safety', '/food-safety', Record<never, never>, Record<never, never>>,
     '/market-price': RouteRecordInfo<'/market-price', '/market-price', Record<never, never>, Record<never, never>>,
+    '/test': RouteRecordInfo<'/test', '/test', Record<never, never>, Record<never, never>>,
     '/tourism': RouteRecordInfo<'/tourism', '/tourism', Record<never, never>, Record<never, never>>,
   }
 
@@ -55,6 +56,10 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/market-price.vue': {
       routes: '/market-price'
+      views: never
+    }
+    'src/pages/test.vue': {
+      routes: '/test'
       views: never
     }
     'src/pages/tourism.vue': {
