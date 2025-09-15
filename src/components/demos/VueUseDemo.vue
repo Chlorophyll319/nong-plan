@@ -108,9 +108,15 @@ const aspectRatio = computed(() => (width.value / height.value).toFixed(2))</cod
       </div>
       <div class="mockup-code">
         <pre><code>import { useLocalStorage } from '@vueuse/core'
+import { watch } from 'vue'
 
 // 自動同步到 localStorage
-const theme = useLocalStorage('theme', 'light')</code></pre>
+const theme = useLocalStorage('theme', 'light')
+
+// 監聽主題變化並應用到 DOM
+watch(theme, (newTheme) => {
+  document.documentElement.setAttribute('data-theme', newTheme)
+}, { immediate: true })</code></pre>
       </div>
     </div>
 
@@ -240,7 +246,7 @@ const microphoneAccess = usePermission('microphone')</code></pre>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import {
   useMouse,
   useWindowSize,
@@ -282,7 +288,12 @@ const { width, height } = useWindowSize()
 const aspectRatio = computed(() => (width.value / height.value).toFixed(2))
 
 // Local storage
-const theme = useLocalStorage('demo-theme', 'light')
+const theme = useLocalStorage('theme', 'light')
+
+// 監聽主題變化並應用到 DOM
+watch(theme, (newTheme) => {
+  document.documentElement.setAttribute('data-theme', newTheme)
+}, { immediate: true })
 
 // Dark mode
 const isDark = useDark()

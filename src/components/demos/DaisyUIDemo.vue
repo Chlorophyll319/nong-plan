@@ -368,7 +368,7 @@ module.exports = {
 }
 
 // 主題切換 JavaScript
-document.documentElement.setAttribute('data-theme', 'cupcake')
+document.documentElement.setAttribute('data-theme', 'light')
 
 // Vue 中使用
 &lt;div data-theme="cyberpunk"&gt;
@@ -394,7 +394,7 @@ import {
   PhBell,
 } from '@phosphor-icons/vue'
 
-const currentTheme = ref('cupcake')
+const currentTheme = ref('light')
 
 const changeTheme = () => {
   document.documentElement.setAttribute('data-theme', currentTheme.value)

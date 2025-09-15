@@ -281,6 +281,14 @@ export const useDemoStore = defineStore('demo', () => {
     user.value = userData
   }
 
+  function updateSettings(newSettings) {
+    settings.value = { ...settings.value, ...newSettings }
+    // 如果是主題設定，直接應用到 DOM
+    if (newSettings.theme) {
+      document.documentElement.setAttribute('data-theme', newSettings.theme)
+    }
+  }
+
   return {
     // 記得要返回所有要暴露的 state、getters、actions
     count,
@@ -292,7 +300,8 @@ export const useDemoStore = defineStore('demo', () => {
     isLoggedIn,
     increment,
     addTodo,
-    login
+    login,
+    updateSettings
   }
 }, {
   persist: true // 啟用持久化
@@ -315,7 +324,7 @@ demoStore.increment()
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useDemoStore } from '../../stores/demo'
 import { PhInfo, PhPlus, PhTrash, PhSignIn, PhSignOut, PhCheck } from '@phosphor-icons/vue'
 
@@ -350,4 +359,11 @@ const updateSetting = (key, value) => {
     [key]: value,
   })
 }
+
+// 初始化時應用保存的主題
+onMounted(() => {
+  if (demoStore.settings.theme) {
+    document.documentElement.setAttribute('data-theme', demoStore.settings.theme)
+  }
+})
 </script>

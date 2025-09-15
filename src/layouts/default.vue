@@ -1,6 +1,5 @@
 <template>
   <div
-    data-theme="cupcake"
     class="fixed top-0 left-0 w-full z-50 navbar bg-base-100 shadow-sm box-border"
   >
     <div class="flex-1">
