@@ -1,78 +1,75 @@
 <template>
-  <div class="min-h-screen flex flex-col" data-theme="cupcake">
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-base-100 shadow-md">
-      <div class="navbar max-w-7xl mx-auto px-4">
+  <div
+    data-theme="cupcake"
+    class="fixed top-0 left-0 w-full z-50 navbar bg-base-100 shadow-sm box-border"
+  >
+    <div class="flex-1">
+      <router-link to="/" class="btn btn-ghost text-xl normal-case h-auto flex-col items-start">
         <!-- Logo -->
-        <div class="navbar-start flex-none">
-          <router-link to="/" class="flex items-center gap-2">
-            <PhPlant class="h-6 w-6 text-primary" />
-            <span class="text-lg font-semibold text-base-content"> 321農農安心平台 </span>
-          </router-link>
-        </div>
-
-        <!-- Desktop Navigation -->
-        <div class="navbar-center flex-none">
-          <div class="flex gap-2">
-            <router-link
-              v-for="item in navItems"
-              :key="item.to"
-              v-show="item.show"
-              :to="item.to"
-              class="btn btn-ghost btn-sm"
-              active-class="btn-primary"
-            >
+        <!-- 課程標籤 -->
+        <span class="text-xs text-base-content/70 font-light leading-tight">農業部黑客松</span>
+        <!-- 標題 -->
+        <span class="text-xl leading-tight">農農安心平台</span>
+      </router-link>
+    </div>
+    <!-- 桌機版選單 -->
+    <div class="flex-none hidden md:block">
+      <ul class="menu menu-horizontal px-1">
+        <template v-for="item in navItems" :key="item.to">
+          <li v-if="item.show">
+            <router-link :to="item.to" class="btn btn-ghost">
               {{ item.title }}
             </router-link>
-          </div>
-        </div>
-
-        <!-- Empty navbar-end for balance -->
-        <div class="navbar-end"></div>
-
-        <!-- Mobile Menu Button -->
-        <div class="hidden">
-          <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-              <PhList class="h-6 w-6" />
-            </div>
-            <ul
-              tabindex="0"
-              class="dropdown-content menu menu-sm bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border"
-            >
-              <li v-for="item in navItems" :key="item.to" v-show="item.show">
-                <router-link :to="item.to" class="py-3" active-class="active">
-                  {{ item.title }}
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
+          </li>
+        </template>
+      </ul>
+    </div>
+    <!-- 手機版漢堡選單 -->
+    <div class="flex-none md:hidden">
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost">
+          <PhList class="h-6 w-6" />
+        </label>
+        <ul
+          tabindex="0"
+          class="dropdown-content menu menu-sm mt-3 z-[1] p-2 shadow bg-base-100 rounded-xl w-52"
+        >
+          <template v-for="item in navItems" :key="item.to">
+            <li v-if="item.show">
+              <router-link
+                :to="item.to"
+                class="btn btn-ghost rounded-lg text-base py-2 px-4 w-full justify-start"
+              >
+                {{ item.title }}
+              </router-link>
+            </li>
+          </template>
+        </ul>
       </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="flex-1 bg-base-50">
-      <div class="max-w-7xl mx-auto px-4 py-6">
-        <router-view />
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-base-200 border-t">
-      <div class="footer footer-center max-w-7xl mx-auto px-4 py-8">
-        <aside>
-          <div class="flex items-center gap-2 mb-2">
-            <PhPlant class="h-6 w-6 text-primary" />
-            <span class="font-semibold text-lg">農農安心平台</span>
-          </div>
-          <p class="text-base-content/70">
-            © {{ new Date().getFullYear() }} 農業部黑客松. 保留所有權利.
-          </p>
-        </aside>
-      </div>
-    </footer>
+    </div>
   </div>
+
+  <!-- Main Content -->
+  <main class="p-4 box-border pt-[72px]">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <router-view />
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-base-200 border-t">
+    <div class="footer footer-center max-w-7xl mx-auto px-4 py-8">
+      <aside>
+        <div class="flex items-center gap-2 mb-2">
+          <PhPlant class="h-6 w-6 text-primary" />
+          <span class="font-semibold text-lg">農農安心平台</span>
+        </div>
+        <p class="text-base-content/70">
+          © {{ new Date().getFullYear() }} 農業部黑客松. 保留所有權利.
+        </p>
+      </aside>
+    </div>
+  </footer>
 </template>
 
 <script setup>
@@ -86,5 +83,7 @@ const navItems = computed(() => [
   { title: '農業教育', to: '/education', show: true },
   { title: '農旅觀光', to: '/tourism', show: true },
   { title: '關於我們', to: '/aboutUs', show: true },
+  { title: '測試示範區', to: '/test', show: true },
 ])
+
 </script>
