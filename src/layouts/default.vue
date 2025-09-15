@@ -4,37 +4,34 @@
     <header class="sticky top-0 z-50 bg-base-100 shadow-md">
       <div class="navbar max-w-7xl mx-auto px-4">
         <!-- Logo -->
-        <div class="navbar-start">
-          <router-link to="/" class="flex flex-col items-start">
-            <span class="text-xs text-base-content/60 font-normal">
-              農業部黑客松
-            </span>
-            <div class="flex items-center gap-2">
-              <PhPlant class="h-6 w-6 text-primary" />
-              <span class="text-xl font-semibold text-base-content">
-                農農安心平台
-              </span>
-            </div>
+        <div class="navbar-start flex-none">
+          <router-link to="/" class="flex items-center gap-2">
+            <PhPlant class="h-6 w-6 text-primary" />
+            <span class="text-lg font-semibold text-base-content"> 321農農安心平台 </span>
           </router-link>
         </div>
 
         <!-- Desktop Navigation -->
-        <div class="navbar-center hidden md:flex">
-          <ul class="menu menu-horizontal px-1 gap-1 flex-row">
-            <li v-for="item in navItems" :key="item.to" v-show="item.show">
-              <router-link
-                :to="item.to"
-                class="btn btn-ghost btn-sm text-sm px-3"
-                active-class="btn-primary"
-              >
-                {{ item.title }}
-              </router-link>
-            </li>
-          </ul>
+        <div class="navbar-center flex-none">
+          <div class="flex gap-2">
+            <router-link
+              v-for="item in navItems"
+              :key="item.to"
+              v-show="item.show"
+              :to="item.to"
+              class="btn btn-ghost btn-sm"
+              active-class="btn-primary"
+            >
+              {{ item.title }}
+            </router-link>
+          </div>
         </div>
 
+        <!-- Empty navbar-end for balance -->
+        <div class="navbar-end"></div>
+
         <!-- Mobile Menu Button -->
-        <div class="navbar-end md:hidden">
+        <div class="hidden">
           <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
               <PhList class="h-6 w-6" />
@@ -44,11 +41,7 @@
               class="dropdown-content menu menu-sm bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border"
             >
               <li v-for="item in navItems" :key="item.to" v-show="item.show">
-                <router-link
-                  :to="item.to"
-                  class="py-3"
-                  active-class="active"
-                >
+                <router-link :to="item.to" class="py-3" active-class="active">
                   {{ item.title }}
                 </router-link>
               </li>

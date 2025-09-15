@@ -37,6 +37,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-vue": "^10.4.0",
     "globals": "^16.4.0",
+    "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "unplugin-auto-import": "^20.1.0",
     "unplugin-fonts": "^1.4.0",

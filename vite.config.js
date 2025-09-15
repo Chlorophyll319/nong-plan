@@ -1,24 +1,28 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
-import VueRouter from 'unplugin-vue-router/vite'
-import Layouts from 'vite-plugin-vue-layouts-next'
-import Pages from 'vite-plugin-pages'
+
+import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueRouter from 'unplugin-vue-router/vite'
+import { defineConfig } from 'vite'
+import Layouts from 'vite-plugin-vue-layouts-next'
+import Pages from 'vite-plugin-pages'
 import Fonts from 'unplugin-fonts/vite'
+
 import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
-    // Vue Router Plugin - 需要在 Vue 插件之前
+    // Tailwind CSS - 放在最前面
+    tailwindcss(),
+
+    // Vue Router Plugin - 根據 'src/pages' 目錄結構自動產生 Vue 路由
     VueRouter({
-      routesFolder: 'src/pages',
       dts: true,
     }),
 
-    // Vue Plugin
     vue(),
 
     // Pages Plugin - 自動生成路由
@@ -27,25 +31,19 @@ export default defineConfig({
       extensions: ['vue'],
     }),
 
-    // Layouts Plugin - 自動布局
+    // 自動將 'src/layouts' 中的檔案作為頁面的佈局使用
     Layouts({
-      layoutsDir: 'src/layouts',
-      defaultLayout: 'default',
+      defaultLayout: 'default', // 預設佈局檔案名稱
     }),
 
-    // Tailwind CSS with DaisyUI
-    tailwindcss({
-      plugins: ['daisyui'],
-    }),
-
-    // Auto Import - 自動導入 Vue API
+    // 自動引入常用的 API，如 'vue'、'pinia' 等
     AutoImport({
       imports: [
         'vue',
-        'vue-router',
+        VueRouterAutoImports,
         '@vueuse/core',
-        'pinia',
         {
+          pinia: ['defineStore', 'storeToRefs'],
           '@unhead/vue': ['useHead', 'useSeoMeta'],
           'vee-validate': ['useField', 'useForm', 'defineRule'],
           yup: ['*'],
@@ -53,19 +51,21 @@ export default defineConfig({
           '@vueuse/gesture': ['useGesture'],
         },
       ],
-      dirs: ['src/composables/**', 'src/stores/**'],
-      dts: true,
-      vueTemplate: true,
+      dts: 'src/auto-imports.d.ts', // 產生自動引入的 TypeScript 定義檔
+      dirs: ['src/composables/**', 'src/stores/**'], // 同時自動引入 src/stores 目錄下的 store
+      vueTemplate: true, // 在 Vue 模板中也啟用自動引入
     }),
 
-    // Components - 自動註冊組件
+    // 自動按需引入元件
     Components({
-      dirs: ['src/components'],
-      extensions: ['vue'],
-      dts: true,
+      // 指定哪些副檔名的檔案是元件
+      extensions: ['.vue'],
+      // 指定要去掃描哪些檔案來尋找元件的使用
+      include: [/\.vue$/, /\.vue\?vue/],
+      dts: 'src/components.d.ts',
     }),
 
-    // Fonts Plugin
+    // Fonts Plugin - 保留您的字型設定
     Fonts({
       google: {
         families: [
@@ -78,10 +78,26 @@ export default defineConfig({
     }),
   ],
 
+  optimizeDeps: {
+    exclude: [
+      'vuetify',
+      'vue-router',
+      'unplugin-vue-router/runtime',
+      'unplugin-vue-router/data-loaders',
+      'unplugin-vue-router/data-loaders/basic',
+    ],
+  },
+
+  define: { 'process.env': {} },
+
   resolve: {
+    // 路徑別名設定
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      // 將 '@' 指向 'src' 目錄的絕對路徑
+      '@': fileURLToPath(new URL('src', import.meta.url)),
     },
+    // 在匯入時可以省略的副檔名
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
   },
 
   css: {
@@ -90,6 +106,5 @@ export default defineConfig({
 
   server: {
     port: 3000,
-    host: true,
   },
 })
