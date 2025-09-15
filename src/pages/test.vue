@@ -41,7 +41,7 @@
 <script setup>
 import { ref } from 'vue'
 import SwiperDemo from '../components/demos/SwiperDemo.vue'
-import GsapDemo from '../components/demos/GsapDemo.vue'
+import GSAPDemo from '../components/demos/GSAPDemo.vue'
 import ChartDemo from '../components/demos/ChartDemo.vue'
 import PhosphorDemo from '../components/demos/PhosphorDemo.vue'
 import VueUseDemo from '../components/demos/VueUseDemo.vue'
@@ -62,7 +62,7 @@ const demos = {
   gsap: {
     title: 'GSAP 動畫引擎',
     description: '專業級動畫庫，提供高性能的時間軸動畫控制',
-    component: GsapDemo
+    component: GSAPDemo
   },
   chart: {
     title: 'Chart.js 圖表庫',
