@@ -46,7 +46,7 @@ export default defineConfig({
           pinia: ['defineStore', 'storeToRefs'],
           '@unhead/vue': ['useHead', 'useSeoMeta'],
           'vee-validate': ['useField', 'useForm', 'defineRule'],
-          'yup': ['string', 'number', 'boolean', 'date', 'array', 'object', 'mixed'],
+          yup: ['string', 'number', 'boolean', 'date', 'array', 'object', 'mixed'],
           '@vueuse/motion': ['useMotion'],
           '@vueuse/gesture': ['useGesture'],
         },
@@ -88,6 +88,28 @@ export default defineConfig({
     ],
   },
 
+  // 開發伺服器優化
+  server: {
+    port: 3000,
+    hmr: {
+      overlay: false, // 關閉錯誤覆蓋層以提升性能
+    },
+  },
+
+  // 構建優化
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['vue', 'vue-router', 'pinia'],
+          ui: ['daisyui', 'tailwindcss'],
+          charts: ['chart.js', 'chartjs-plugin-datalabels'],
+          animation: ['gsap', '@vueuse/motion'],
+        },
+      },
+    },
+  },
+
   define: { 'process.env': {} },
 
   resolve: {
@@ -102,9 +124,5 @@ export default defineConfig({
 
   css: {
     devSourcemap: true,
-  },
-
-  server: {
-    port: 3000,
   },
 })
