@@ -3,7 +3,7 @@ meta:
   title: '農業教育'
 </route>
 <template>
-<h1>農業教育</h1>
+  <h1>農業教育</h1>
 </template>
 
 <script setup>

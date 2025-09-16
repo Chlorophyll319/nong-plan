@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* 應用字體 */
 body {
@@ -93,12 +93,11 @@ body {
 
 @plugin "daisyui";
 
-
 @plugin "daisyui/theme" {
-  name: "light";
+  name: 'light';
   default: false;
   prefersdark: false;
-  color-scheme: "light";
+  color-scheme: 'light';
   --color-base-100: oklch(100% 0 0);
   --color-base-200: oklch(98% 0 0);
   --color-base-300: oklch(95% 0 0);
@@ -129,12 +128,11 @@ body {
   --noise: 0;
 }
 
-
 @plugin "daisyui/theme" {
-  name: "dark";
+  name: 'dark';
   default: false;
   prefersdark: false;
-  color-scheme: "dark";
+  color-scheme: 'dark';
   --color-base-100: oklch(25.33% 0.016 252.42);
   --color-base-200: oklch(23.26% 0.014 253.1);
   --color-base-300: oklch(21.15% 0.012 254.09);
@@ -165,12 +163,11 @@ body {
   --noise: 0;
 }
 
-
 @plugin "daisyui/theme" {
-  name: "cupcake";
+  name: 'cupcake';
   default: false;
   prefersdark: false;
-  color-scheme: "light";
+  color-scheme: 'light';
   --color-base-100: oklch(97.788% 0.004 56.375);
   --color-base-200: oklch(93.982% 0.007 61.449);
   --color-base-300: oklch(91.586% 0.006 53.44);
@@ -202,10 +199,10 @@ body {
 }
 
 @plugin "daisyui/theme" {
-  name: "cyberpunk";
+  name: 'cyberpunk';
   default: false;
   prefersdark: false;
-  color-scheme: "light";
+  color-scheme: 'light';
   --color-base-100: oklch(94.51% 0.179 104.32);
   --color-base-200: oklch(91.51% 0.179 104.32);
   --color-base-300: oklch(85.51% 0.179 104.32);

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="fixed top-0 left-0 w-full z-50 navbar bg-base-100 shadow-sm box-border"
-  >
+  <div class="fixed top-0 left-0 w-full z-50 navbar bg-base-100 shadow-sm box-border">
     <div class="flex-1">
       <router-link to="/" class="btn btn-ghost text-xl normal-case h-auto flex-col items-start">
         <!-- Logo -->
@@ -84,5 +82,4 @@ const navItems = computed(() => [
   { title: '關於我們', to: '/aboutUs', show: true },
   { title: '測試示範區', to: '/test', show: true },
 ])
-
 </script>

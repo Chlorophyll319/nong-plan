@@ -3,7 +3,7 @@ meta:
   title: '食品安全小尖兵'
 </route>
 <template>
-<h1>食安</h1>
+  <h1>食安</h1>
 </template>
 
 <script setup>

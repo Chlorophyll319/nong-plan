@@ -46,7 +46,7 @@ export default defineConfig({
           pinia: ['defineStore', 'storeToRefs'],
           '@unhead/vue': ['useHead', 'useSeoMeta'],
           'vee-validate': ['useField', 'useForm', 'defineRule'],
-          yup: ['*'],
+          'yup': ['string', 'number', 'boolean', 'date', 'array', 'object', 'mixed'],
           '@vueuse/motion': ['useMotion'],
           '@vueuse/gesture': ['useGesture'],
         },

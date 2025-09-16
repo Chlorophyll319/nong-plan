@@ -57,52 +57,52 @@ const demos = {
   swiper: {
     title: 'Swiper 輪播組件',
     description: '現代化的觸控滑動輪播組件，支援多種效果和響應式設計',
-    component: SwiperDemo
+    component: SwiperDemo,
   },
   gsap: {
     title: 'GSAP 動畫引擎',
     description: '專業級動畫庫，提供高性能的時間軸動畫控制',
-    component: GSAPDemo
+    component: GSAPDemo,
   },
   chart: {
     title: 'Chart.js 圖表庫',
     description: '靈活的圖表庫，支援多種圖表類型和客製化選項',
-    component: ChartDemo
+    component: ChartDemo,
   },
   phosphor: {
     title: 'Phosphor Icons',
     description: '現代化的圖示庫，提供1000+個精美的圖示組件',
-    component: PhosphorDemo
+    component: PhosphorDemo,
   },
   vueuse: {
     title: 'VueUse 工具庫',
     description: 'Vue 3 Composition API 實用工具庫，提供豐富的組合式函數',
-    component: VueUseDemo
+    component: VueUseDemo,
   },
   motion: {
     title: 'VueUse Motion',
     description: '基於 VueUse 的動畫庫，提供聲明式動畫控制',
-    component: VueUseMotionDemo
+    component: VueUseMotionDemo,
   },
   axios: {
     title: 'Axios HTTP 客戶端',
     description: '基於 Promise 的 HTTP 庫，支援請求/響應攔截器',
-    component: AxiosDemo
+    component: AxiosDemo,
   },
   pinia: {
     title: 'Pinia 狀態管理',
     description: 'Vue 官方推薦的狀態管理庫，類型安全且支援 DevTools',
-    component: PiniaDemo
+    component: PiniaDemo,
   },
   validate: {
     title: 'VeeValidate 表單驗證',
     description: '強大的 Vue 表單驗證庫，支援 Yup 架構驗證',
-    component: VeeValidateDemo
+    component: VeeValidateDemo,
   },
   daisyui: {
     title: 'DaisyUI 組件庫',
     description: '基於 Tailwind CSS 的語義化組件庫',
-    component: DaisyUIDemo
-  }
+    component: DaisyUIDemo,
+  },
 }
 </script>

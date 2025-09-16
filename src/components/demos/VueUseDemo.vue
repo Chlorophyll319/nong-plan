@@ -291,9 +291,13 @@ const aspectRatio = computed(() => (width.value / height.value).toFixed(2))
 const theme = useLocalStorage('theme', 'light')
 
 // 監聽主題變化並應用到 DOM
-watch(theme, (newTheme) => {
-  document.documentElement.setAttribute('data-theme', newTheme)
-}, { immediate: true })
+watch(
+  theme,
+  (newTheme) => {
+    document.documentElement.setAttribute('data-theme', newTheme)
+  },
+  { immediate: true },
+)
 
 // Dark mode
 const isDark = useDark()
